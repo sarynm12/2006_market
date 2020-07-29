@@ -1,3 +1,5 @@
+require 'date'
+
 class Market
   attr_reader :name, :vendors
 
@@ -50,7 +52,19 @@ class Market
     end
     sorted.flat_map do |item|
       item.name
-    end.uniq.sort 
+    end.uniq.sort
+  end
+
+  def date
+    date = DateTime.now.strftime("%d/%m/%Y")
+  end
+
+  def sell(item, amount)
+    if total_inventory[item][:quantity] > amount
+      true
+    else
+      false
+    end
   end
 
 end
