@@ -40,7 +40,7 @@ pry(main)> item2.name
 #=> "Tomato"
 
 pry(main)> item2.price
-#=> 0.50
+#=> 0.5
 
 pry(main)> vendor = Vendor.new("Rocky Mountain Fresh")
 #=> #<Vendor:0x00007f85683152f0...>
