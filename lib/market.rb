@@ -18,8 +18,21 @@ class Market
 
   def vendors_that_sell(item)
     @vendors.select do |vendor|
-      vendor.inventory.include?(item)
+      vendor.inventory.keys.include?(item)
     end
   end
 
+  def total_inventory
+    result = {}
+    items = @vendors.flat_map do |vendor|
+      vendor.inventory.keys
+    end.uniq
+    items.each do |item|
+      total = vendors_that_sell(item).sum do |vendor|
+        vendor.inventory[item]
+      end
+      result[item] = {quantity: total, vendors: vendors_that_sell(item)}
+    end
+    result
+  end
 end
